@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-hksov($ciq%q(ba=1yu6fju^lde+j_bzfw88esa7if8pzo_yzo'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['instagramclone.herokuapp.com','localhost', '127.0.0.1','*']
 
