@@ -1,1 +1,1 @@
-web: gunicorn DBlocks_Frontend.wsgi
+web: gunicorn InstagramBackend.wsgi
