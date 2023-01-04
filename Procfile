@@ -1,1 +1,1 @@
-web: gunicorn InstagramBackend.InstagramBackend.wsgi
+web: gunicorn InstagramBackend.wsgi
