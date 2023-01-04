@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-hksov($ciq%q(ba=1yu6fju^lde+j_bzfw88esa7if8pzo_yzo
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['djangobeanstackenv.eba-vdi5dype.us-west-2.elasticbeanstalk.com','localhost','127.0.0.1','*']
 
 
 # Application definition
