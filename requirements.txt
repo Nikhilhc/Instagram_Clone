@@ -8,3 +8,4 @@ tzdata==2022.7
 whitenoise==6.3.0
 gunicorn
 psycopg2-binary
+pillow
