@@ -86,10 +86,10 @@ WSGI_APPLICATION = 'InstagramBackend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'Testdatabase',
+        'NAME': 'DatablocksDB',
         'USER': 'postgres',
         'PASSWORD': 'Nikhil123',
-        'HOST': 'database-1.caubhyjllbom.us-west-2.rds.amazonaws.com',
+        'HOST': 'terraform-20230106143829797600000005.caubhyjllbom.us-west-2.rds.amazonaws.com',
         'PORT': '5432',
     }
 }
