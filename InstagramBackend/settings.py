@@ -27,8 +27,7 @@ SECRET_KEY = 'django-insecure-hksov($ciq%q(ba=1yu6fju^lde+j_bzfw88esa7if8pzo_yzo
 DEBUG = True
 
 ALLOWED_HOSTS = ['djangobeanstackenv.eba-vdi5dype.us-west-2.elasticbeanstalk.com','localhost','127.0.0.1','*']
-
-
+AUTH_USER_MODEL = 'BackendApi.User'
 # Application definition
 
 INSTALLED_APPS = [
@@ -39,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'BackendApi',
-    'rest_framework'
+    'rest_framework',
+    'account',
 ]
 
 MIDDLEWARE = [
@@ -51,6 +51,21 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+
+AUTHENTICATION_BACKENDS = [
+    'account.core.auth_backend.CognitoBackend',
+    'django.contrib.auth.backends.ModelBackend',
+
+]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'account.core.auth_backend.CognitoTokenAuthentication',
+    ],
+}
+
+
 
 ROOT_URLCONF = 'InstagramBackend.urls'
 
@@ -75,24 +90,24 @@ WSGI_APPLICATION = 'InstagramBackend.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-#
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'DatablocksDB',
-        'USER': 'postgres',
-        'PASSWORD': 'Nikhil123',
-        'HOST': 'terraform-20230106143829797600000005.caubhyjllbom.us-west-2.rds.amazonaws.com',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'DatablocksDB',
+#         'USER': 'postgres',
+#         'PASSWORD': 'Nikhil123',
+#         'HOST': 'terraform-20230106143829797600000005.caubhyjllbom.us-west-2.rds.amazonaws.com',
+#         'PORT': '5432',
+#     }
+# }
 
 
 # Password validation
