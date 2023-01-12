@@ -9,3 +9,9 @@ whitenoise==6.3.0
 gunicorn
 psycopg2-binary
 pillow
+cryptography
+drf-jwt
+boto3
+python-jose
+django-cognito-jwt
+jwcrypto
