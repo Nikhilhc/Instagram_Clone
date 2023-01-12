@@ -13,7 +13,7 @@ class RegisterViewSet(viewsets.generics.CreateAPIView):
     def post(self, request, *args, **kwargs):
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
-            client = boto3.client('cognito-idp')
+            client = boto3.client('cognito-idp',region_name='ap-south-1')
             response = client.admin_create_user(
                 UserPoolId='ap-south-1_lL5m6LsOs',
                 Username=request.data.get('username'),
