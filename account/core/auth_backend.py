@@ -28,7 +28,7 @@ def get_public_key(access_token):
 
 class CognitoBackend(BaseBackend):
     def authenticate(self, request, username=None, password=None):
-        client = boto3.client('cognito-idp')
+        client = boto3.client('cognito-idp',region_name='ap-south-1')
         try:
             # Call the Cognito service to authenticate the user
             response = client.admin_initiate_auth(
@@ -91,7 +91,7 @@ class CognitoTokenAuthentication(authentication.BaseAuthentication):
             raise exceptions.AuthenticationFailed(msg)
         try:
             username = jwt.decode(access_token, key, algorithms='RS256')['username']
-            client = boto3.client('cognito-idp')
+            client = boto3.client('cognito-idp',region_name='ap-south-1')
         except:
             msg = 'Invalid token'
             raise exceptions.AuthenticationFailed(msg)
