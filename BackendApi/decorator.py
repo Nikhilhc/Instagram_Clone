@@ -9,7 +9,7 @@ def authenticate_cognito(view_func):
         # Extract the token from the request headers
         token = request.headers.get('Authorization')
         # Verify the token with Amazon Cognito
-        client = boto3.client('cognito-idp')
+        client = boto3.client('cognito-idp',region_name='ap-south-1')
         try:
             response = client.get_user(AccessToken=token)
         except client.exceptions.NotAuthorizedException:
