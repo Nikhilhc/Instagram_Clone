@@ -12,7 +12,6 @@ class RegisterViewSet(viewsets.generics.CreateAPIView):
     serializer_class = UserSerializer
     def post(self, request, *args, **kwargs):
         serializer = self.serializer_class(data=request.data)
-        import ipdb;ipdb.set_trace()
         if serializer.is_valid():
             client = boto3.client('cognito-idp')
             response = client.admin_create_user(

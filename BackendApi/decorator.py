@@ -8,7 +8,6 @@ def authenticate_cognito(view_func):
     def wrapper(request, *args, **kwargs):
         # Extract the token from the request headers
         token = request.headers.get('Authorization')
-        import ipdb;ipdb.set_trace()
         # Verify the token with Amazon Cognito
         client = boto3.client('cognito-idp')
         try:
