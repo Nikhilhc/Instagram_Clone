@@ -8,25 +8,30 @@ from django.http import Http404
 from .serailizers import UserSerializer, PostSerializer, CommentSerializer, FollowerSerializer
 from .models import Post, Like, Follower, User, Comment
 from django.db.models import Q
+from django.contrib.auth import get_user_model
+User = get_user_model()
 
 
 class ProfileView(generics.ListAPIView):
-
     def get(self, request, *args, **kwargs):
-        user = User.objects.get(user_id=kwargs['user_id'])
-        user_serializer = UserSerializer(user)
-        posts = Post.objects.filter(user=user).order_by('-time_posted')
-        post_serializer = PostSerializer(posts, many=True)
-        followers = Follower.objects.filter(user=user)
-        follower_serializer = FollowerSerializer(followers, many=True)
-
-        return Response({
-            'user': user_serializer.data,
-            'posts': post_serializer.data,
-            'following_people': follower_serializer.data,
-            'following': len(follower_serializer.data),
-            'posts_count': len(post_serializer.data),
-        })
+        try:
+            user = User.objects.get(user_id=kwargs['user_id'])
+            user_serializer = UserSerializer(user)
+            posts = Post.objects.filter(user=user).order_by('-time_posted')
+            post_serializer = PostSerializer(posts, many=True)
+            followers = Follower.objects.filter(user=user)
+            follower_serializer = FollowerSerializer(followers, many=True)
+            return Response({
+                'user': user_serializer.data,
+                'my_posts': post_serializer.data,
+                'following_people': follower_serializer.data,
+                'following': len(follower_serializer.data),
+                'posts_count': len(post_serializer.data),
+            })
+        except:
+            return Response({
+                "Details":"User doesnot exists"
+            },status=status.HTTP_404_NOT_FOUND)
 
 
 class UpdateProfilePictureView(generics.RetrieveUpdateDestroyAPIView):
